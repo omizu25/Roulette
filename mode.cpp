@@ -13,6 +13,7 @@
 #include "mode.h"
 #include "rectangle.h"
 #include "texture.h"
+#include "title.h"
 
 #include <assert.h>
 #include <time.h>
@@ -49,6 +50,9 @@ void UninitMode(void)
 	// ゲームの終了
 	UninitGame();
 
+	// タイトルの終了
+	UninitTitle();
+
 	// 矩形の終了
 	UninitRectangle();
 
@@ -64,16 +68,11 @@ void UpdateMode(void)
 	switch (s_mode)
 	{// どのモード？
 	case MODE_TITLE:	// タイトル
-		break;
-
-	case MODE_TUTORIAL:	// チュートリアル
+		UpdateTitle();
 		break;
 
 	case MODE_GAME:		// ゲーム
 		UpdateGame();
-		break;
-
-	case MODE_RESULT:	// リザルト
 		break;
 
 	case MODE_NONE:
@@ -94,16 +93,11 @@ void DrawMode(void)
 	switch (s_mode)
 	{// どのモード？
 	case MODE_TITLE:	// タイトル
-		break;
-
-	case MODE_TUTORIAL:	// チュートリアル
+		DrawTitle();
 		break;
 
 	case MODE_GAME:		// ゲーム
 		DrawGame();
-		break;
-
-	case MODE_RESULT:	// リザルト
 		break;
 
 	case MODE_NONE:
@@ -139,16 +133,11 @@ void SetMode(void)
 	switch (s_mode)
 	{// 現在のモードの終了
 	case MODE_TITLE:	// タイトル
-		break;
-
-	case MODE_TUTORIAL:	// チュートリアル
+		UninitTitle();
 		break;
 
 	case MODE_GAME:		// ゲーム
 		UninitGame();
-		break;
-
-	case MODE_RESULT:	// リザルト
 		break;
 
 	case MODE_NONE:
@@ -171,18 +160,13 @@ void SetMode(void)
 	switch (s_modeNext)
 	{// 次のモードの初期化
 	case MODE_TITLE:	// タイトル
-		break;
-
-	case MODE_TUTORIAL:	// チュートリアル
+		InitTitle();
 		break;
 
 	case MODE_GAME:		// ゲーム
 		InitGame();
 		break;
-
-	case MODE_RESULT:	// リザルト
-		break;
-
+	
 	case MODE_NONE:
 	default:
 		assert(false);

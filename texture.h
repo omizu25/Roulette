@@ -24,6 +24,8 @@ typedef enum
 	TEXTURE_Number_009,		// 数字009
 	TEXTURE_Number_010,		// 数字010
 	TEXTURE_Roulette,		// タイトルロゴ
+	TEXTURE_BG,				// 背景
+	TEXTURE_GameStart_008,	// スタート
 	TEXTURE_MAX,
 	TEXTURE_NONE,	// 使用しない
 }TEXTURE;

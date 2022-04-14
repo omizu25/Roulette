@@ -26,6 +26,8 @@
 //==================================================
 namespace
 {
+const float	TITLE_WIDTH = 600.0f;	// タイトルロゴの幅
+const float	TITLE_HEIGHT = 200.0f;	// タイトルロゴの高さ
 const float	MENU_WIDTH = 300.0f;	// メニューの幅
 const float	MENU_HEIGHT = 80.0f;	// メニューの高さ
 
@@ -41,9 +43,10 @@ enum EMenu
 //==================================================
 namespace
 {
+int	s_idxBG;		// 背景の矩形のインデックス
+int	s_idxTitleLogo;	// タイトルロゴの矩形のインデックス
 int	s_selectMenu;	// 選ばれているメニュー
 int	s_idxMenu;		// メニューの配列のインデックス
-int	s_idxTitleLogo;	// タイトルロゴの矩形のインデックス
 }// namespaceはここまで
 
 //==================================================
@@ -60,6 +63,31 @@ void Input(void);
 void InitTitle(void)
 {
 	s_selectMenu = 0;
+
+	{// 背景
+		// 矩形の設定
+		s_idxBG = SetRectangle(TEXTURE_BG);
+
+		D3DXVECTOR3 pos = D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f);
+
+		// 矩形の位置の設定
+		SetPosRectangle(s_idxBG, pos, size);
+	}
+
+	{// タイトルロゴ
+		// 矩形の設定
+		s_idxTitleLogo = SetRectangle(TEXTURE_Roulette);
+
+		D3DXVECTOR3 pos = D3DXVECTOR3(SCREEN_WIDTH * 0.275f, SCREEN_HEIGHT * 0.5f, 0.0f);
+		D3DXVECTOR3 size = D3DXVECTOR3(TITLE_WIDTH, TITLE_HEIGHT, 0.0f);
+
+		// 矩形の位置の設定
+		SetPosRectangle(s_idxTitleLogo, pos, size);
+
+		// 矩形の色の設定
+		SetColorRectangle(s_idxTitleLogo, GetColor(COLOR_RED));
+	}
 	
 	{// メニュー
 		// メニューの初期化
@@ -75,7 +103,7 @@ void InitTitle(void)
 		menu.height = MENU_HEIGHT;
 		menu.sort = true;
 
-		menu.texture[MENU_GAME] = TEXTURE_NONE;
+		menu.texture[MENU_GAME] = TEXTURE_GameStart_008;
 
 		SInFrame frame;
 		frame.use = true;
@@ -140,7 +168,7 @@ void Input(void)
 		switch (s_selectMenu)
 		{
 		case MENU_GAME:	// ゲーム
-			ChangeMode(MODE_TUTORIAL);
+			ChangeMode(MODE_GAME);
 			break;
 
 		default:

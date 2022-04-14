@@ -13,9 +13,7 @@
 enum EMode
 {
 	MODE_TITLE = 0,	// タイトル
-	MODE_TUTORIAL,	// チュートリアル
 	MODE_GAME,		// ゲーム
-	MODE_RESULT,	// リザルト
 	MODE_MAX,
 	MODE_NONE
 };
