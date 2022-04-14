@@ -36,9 +36,6 @@ void InitMode(void)
 	// randの初期化
 	srand((unsigned int)time(NULL));
 
-	// テクスチャの読み込み
-	LoadTexture();
-
 	// 矩形の初期化
 	InitRectangle();
 }
@@ -57,8 +54,8 @@ void UninitMode(void)
 	// 矩形の終了
 	UninitRectangle();
 
-	// テクスチャの終了
-	UninitTexture();
+	// テクスチャの解放
+	UnloadTextureAll();
 }
 
 //--------------------------------------------------
@@ -152,6 +149,9 @@ void SetMode(void)
 
 	// 矩形の終了
 	UninitRectangle();
+
+	// テクスチャの解放
+	UnloadTextureAll();
 
 	// 矩形の初期化
 	InitRectangle();
