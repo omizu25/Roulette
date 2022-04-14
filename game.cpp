@@ -16,6 +16,7 @@
 #include "color.h"
 #include "time.h"
 #include "utility.h"
+#include "bg.h"
 
 #include <assert.h>
 
@@ -34,6 +35,9 @@ bool		s_pause = false;				// ポーズ中かどうか [してる  : true してない  : false]
 //--------------------------------------------------
 void InitGame(void)
 {
+	// 背景の初期化
+	InitBG();
+
 	s_gameState = GAMESTATE_SAMPLE;	// サンプル状態に設定
 
 	s_counterState = 0;	// カウンターの初期化
@@ -46,6 +50,8 @@ void InitGame(void)
 //--------------------------------------------------
 void UninitGame(void)
 {
+	// 背景の終了
+	UninitBG();
 }
 
 //--------------------------------------------------

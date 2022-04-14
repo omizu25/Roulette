@@ -18,6 +18,7 @@
 #include "texture.h"
 #include "utility.h"
 #include "menu.h"
+#include "bg.h"
 
 #include <assert.h>
 
@@ -43,7 +44,6 @@ enum EMenu
 //==================================================
 namespace
 {
-int	s_idxBG;		// 背景の矩形のインデックス
 int	s_idxTitleLogo;	// タイトルロゴの矩形のインデックス
 int	s_selectMenu;	// 選ばれているメニュー
 int	s_idxMenu;		// メニューの配列のインデックス
@@ -64,16 +64,8 @@ void InitTitle(void)
 {
 	s_selectMenu = 0;
 
-	{// 背景
-		// 矩形の設定
-		s_idxBG = SetRectangle(TEXTURE_BG);
-
-		D3DXVECTOR3 pos = D3DXVECTOR3(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f, 0.0f);
-		D3DXVECTOR3 size = D3DXVECTOR3(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f);
-
-		// 矩形の位置の設定
-		SetPosRectangle(s_idxBG, pos, size);
-	}
+	// 背景の初期化
+	InitBG();
 
 	{// タイトルロゴ
 		// 矩形の設定
@@ -126,8 +118,14 @@ void InitTitle(void)
 //--------------------------------------------------
 void UninitTitle(void)
 {
+	// 背景の終了
+	UninitBG();
+
 	// メニューの終了
 	UninitMenu();
+
+	// 使うのを止める
+	StopUseRectangle(s_idxTitleLogo);
 }
 
 //--------------------------------------------------
