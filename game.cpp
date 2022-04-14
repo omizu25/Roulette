@@ -52,10 +52,6 @@ void InitGame(void)
 	// ルーレットの初期化
 	InitRoulette();
 
-	s_gameState = GAMESTATE_NORMAL;	// サンプル状態に設定
-
-	s_counterState = 0;	// カウンターの初期化
-
 	s_pause = false;	// ポーズ解除
 }
 
