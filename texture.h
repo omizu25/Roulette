@@ -13,16 +13,6 @@
 typedef enum
 {
 	TEXTURE_Number_000 = 0,	// 数字000
-	TEXTURE_Number_001,		// 数字001
-	TEXTURE_Number_002,		// 数字002
-	TEXTURE_Number_003,		// 数字003
-	TEXTURE_Number_004,		// 数字004
-	TEXTURE_Number_005,		// 数字005
-	TEXTURE_Number_006,		// 数字006
-	TEXTURE_Number_007,		// 数字007
-	TEXTURE_Number_008,		// 数字008
-	TEXTURE_Number_009,		// 数字009
-	TEXTURE_Number_010,		// 数字010
 	TEXTURE_Roulette,		// タイトルロゴ
 	TEXTURE_BG,				// 背景
 	TEXTURE_GameStart_008,	// スタート

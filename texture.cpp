@@ -21,16 +21,6 @@ namespace
 const char *s_FileName[] =
 {// テクスチャのパス	
 	"data/TEXTURE/Number_000.png",		// 数字000
-	"data/TEXTURE/Number_001.png",		// 数字001
-	"data/TEXTURE/Number_002.png",		// 数字002
-	"data/TEXTURE/Number_003.png",		// 数字003
-	"data/TEXTURE/Number_004.png",		// 数字004
-	"data/TEXTURE/Number_005.png",		// 数字005
-	"data/TEXTURE/Number_006.png",		// 数字006
-	"data/TEXTURE/Number_007.png",		// 数字007
-	"data/TEXTURE/Number_008.png",		// 数字008
-	"data/TEXTURE/Number_009.png",		// 数字009
-	"data/TEXTURE/Number_010.png",		// 数字010
 	"data/TEXTURE/Roulette.png",		// タイトルロゴ
 	"data/TEXTURE/BG.jpg",				// 背景
 	"data/TEXTURE/GameStart_008.png",	// スタート
