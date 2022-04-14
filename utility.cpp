@@ -60,7 +60,7 @@ float FloatRandam(float inMax, float inMin)
 //--------------------------------------------------
 int IntRandam(int inMax, int inMin)
 {
-	return (int)((rand() / (float)RAND_MAX) * (inMax - inMin)) + inMin;
+	return (rand() % (inMax - inMin + 1)) + inMin;
 }
 
 //--------------------------------------------------

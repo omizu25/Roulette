@@ -17,8 +17,19 @@
 #include "time.h"
 #include "utility.h"
 #include "bg.h"
+#include "roulette.h"
+#include "mode.h"
 
 #include <assert.h>
+
+//==================================================
+// 定義
+//==================================================
+namespace
+{
+const int	MAX_TIME = 1500;	// タイムの最大値
+const int	CHANGE_TIME = 15;	// タイムの変更値
+}// namesapceはここまで
 
 //==================================================
 // スタティック変数
@@ -38,7 +49,10 @@ void InitGame(void)
 	// 背景の初期化
 	InitBG();
 
-	s_gameState = GAMESTATE_SAMPLE;	// サンプル状態に設定
+	// ルーレットの初期化
+	InitRoulette();
+
+	s_gameState = GAMESTATE_NORMAL;	// サンプル状態に設定
 
 	s_counterState = 0;	// カウンターの初期化
 
@@ -52,6 +66,9 @@ void UninitGame(void)
 {
 	// 背景の終了
 	UninitBG();
+
+	// ルーレットの終了
+	UninitRoulette();
 }
 
 //--------------------------------------------------
@@ -59,6 +76,28 @@ void UninitGame(void)
 //--------------------------------------------------
 void UpdateGame(void)
 {
+	// ルーレットの更新
+	UpdateRoulette();
+
+	if (s_gameState == GAMESTATE_RESULT)
+	{
+		s_counterState++;
+
+		if (GetFunctionKeyTrigger(FUNCTION_KEY_DESISION))
+		{//決定キー(ENTERキー)が押されたかどうか
+			if (s_counterState >= CHANGE_TIME)
+			{// 一定時間経過
+				// モードの変更
+				ChangeMode(MODE_TITLE);
+			}
+		}
+
+		if (s_counterState >= MAX_TIME)
+		{// 一定時間経過
+			// モードの変更
+			ChangeMode(MODE_TITLE);
+		}
+	}
 }
 
 //--------------------------------------------------

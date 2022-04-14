@@ -14,6 +14,7 @@
 #include "rectangle.h"
 #include "texture.h"
 #include "title.h"
+#include "utility.h"
 
 #include <assert.h>
 #include <time.h>

@@ -417,7 +417,7 @@ static void DrawDebug(void)
 	length = (int)strlen(&str[0]);
 
 	// テキストの描画
-	s_pFont->DrawText(NULL, &str[0], -1, &rect, DT_LEFT, D3DXCOLOR(0.25f, 0.75f, 1.0f, 1.0f));
+	s_pFont->DrawText(NULL, &str[0], -1, &rect, DT_LEFT, D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
 }
 
 //--------------------------------------------------
