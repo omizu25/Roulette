@@ -29,7 +29,7 @@
 namespace
 {
 const int	STOP_TIME = 15;							// 止めれるまでの時間
-const int	MAX_NUMBER = 30;						// 数の最大値
+const int	MAX_NUMBER = 17;						// 数の最大値
 const int	MIN_NUMBER = 1;							// 数の最小値
 const int	RANDOM = (MAX_NUMBER - MIN_NUMBER + 1);	// ランダムの範囲の個数
 const int	MAX_TEXT = 1024;						// テキストの最大文字数
