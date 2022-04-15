@@ -26,7 +26,18 @@ namespace
 {
 EMode	s_mode = MODE_NONE;		// 現在のモード
 EMode	s_modeNext = MODE_NONE;	// 次のモード
+void(*s_pUpdateFunc)(void);
+void(*s_pDrawFunc)(void);
 }// namesapceはここまで
+
+//==================================================
+// スタティック関数プロトタイプ宣言
+//==================================================
+namespace
+{
+void UpdateNone(void);
+void DrawNone(void);
+}// namespaceはここまで
 
 //--------------------------------------------------
 // 初期化
@@ -38,6 +49,9 @@ void InitMode(void)
 
 	// 矩形の初期化
 	InitRectangle();
+
+	s_pUpdateFunc = UpdateNone;
+	s_pDrawFunc = DrawNone;
 }
 
 //--------------------------------------------------
@@ -63,24 +77,7 @@ void UninitMode(void)
 //--------------------------------------------------
 void UpdateMode(void)
 {
-	switch (s_mode)
-	{// どのモード？
-	case MODE_TITLE:	// タイトル
-		UpdateTitle();
-		break;
-
-	case MODE_GAME:		// ゲーム
-		UpdateGame();
-		break;
-
-	case MODE_NONE:
-		/* 処理なし */
-		break;
-
-	default:
-		assert(false);
-		break;
-	}
+	s_pUpdateFunc();
 }
 
 //--------------------------------------------------
@@ -88,24 +85,7 @@ void UpdateMode(void)
 //--------------------------------------------------
 void DrawMode(void)
 {
-	switch (s_mode)
-	{// どのモード？
-	case MODE_TITLE:	// タイトル
-		DrawTitle();
-		break;
-
-	case MODE_GAME:		// ゲーム
-		DrawGame();
-		break;
-
-	case MODE_NONE:
-		/* 処理なし */
-		break;
-
-	default:
-		assert(false);
-		break;
-	}
+	s_pDrawFunc();
 }
 
 //--------------------------------------------------
@@ -162,9 +142,13 @@ void SetMode(void)
 	{// 次のモードの初期化
 	case MODE_TITLE:	// タイトル
 		InitTitle();
+		s_pUpdateFunc = UpdateTitle;
+		s_pDrawFunc = DrawTitle;
 		break;
 
 	case MODE_GAME:		// ゲーム
+		s_pUpdateFunc = UpdateGame;
+		s_pDrawFunc = DrawGame;
 		InitGame();
 		break;
 	
@@ -194,3 +178,20 @@ void ChangeMode(EMode inModeNext)
 
 	s_modeNext = inModeNext;
 }
+
+namespace
+{
+//--------------------------------------------------
+// 更新をしない
+//--------------------------------------------------
+void UpdateNone(void)
+{
+}
+
+//--------------------------------------------------
+// 描画をしない
+//--------------------------------------------------
+void DrawNone(void)
+{
+}
+}// namespaceはここまで
